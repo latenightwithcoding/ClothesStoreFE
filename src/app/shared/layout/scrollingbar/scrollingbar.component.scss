@@ -1,0 +1,63 @@
+.scroller-container {
+    background-color: #000;
+    padding-top: 5px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.scroller-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-shrink: 0;
+    width: max-content;
+    animation: scroll-left 3s linear infinite;
+}
+
+// /* Hover: tạm dừng */
+// .scroller-container:hover .scroller-content {
+//     animation-play-state: paused;
+// }
+
+/* Logo */
+.logo,
+.brand-name {
+    height: 35px;
+    max-width: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Cuộn vô tận */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-10.1%); // ✅ fix lỗi bị trống
+    }
+}
+
+/* Hiệu ứng mờ mép */
+.scroller-container::before,
+.scroller-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    z-index: 2;
+}
+
+.scroller-container::before {
+    left: 0;
+    background: linear-gradient(to right, #000 0%, transparent 100%);
+}
+
+.scroller-container::after {
+    right: 0;
+    background: linear-gradient(to left, #000 0%, transparent 100%);
+}

@@ -1,0 +1,59 @@
+$primary-color: #000000;
+$hover-color: white;
+$text-color: #afafaf;
+
+nav {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    // ✨ Đặt transition ở đây!
+    // Nó sẽ áp dụng cho cả lúc hover và lúc buông chuột ra.
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $primary-color;
+        // Bỏ dòng transition ở đây
+    }
+
+    // Tương tự, nếu bạn có ::after, cũng cần đặt transition ở trạng thái gốc
+    &::after {
+        opacity: 0; // Trạng thái ban đầu
+        transition: opacity 0.3s ease; // Transition cho trạng thái gốc
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+
+    // ... phần code còn lại của bạn giữ nguyên ...
+    img {
+        color: $primary-color;
+        height: 50px;
+        margin: 15px 15px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            display: inline-block;
+
+            a {
+                display: block;
+                padding: 10px;
+                color: $text-color;
+                text-decoration: none;
+                // Thêm transition cho màu chữ để mượt hơn
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $hover-color;
+                }
+            }
+        }
+    }
+}
