@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 806.97 404.44">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+
+      .cls-2 {
+        font-family: SVN-BladeRunner, 'SVN-Blade Runner';
+        font-size: 170px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-3" width="806.97" height="195.74"/>
+  <g>
+    <text class="cls-2" transform="translate(25.21 195.74)"><tspan x="0" y="0">BuuBuu</tspan></text>
+    <path class="cls-1" d="M75.85,78.27s-13.41-60.67-37.7-54.51C17.22,29.08-12.61,65.82,5.7,59.12c22.4-8.21,33.33-19.03,33.17-14.68-.54,15.05,20.12,48.94,20.12,48.94l16.86-15.1Z"/>
+    <path class="cls-1" d="M97.21,83.12s27.52-37.01,30.38-56.3.74-44.98-18.91-8.6c-17.13,31.71-30.38,64.89-30.38,64.89h18.91Z"/>
+  </g>
+</svg>

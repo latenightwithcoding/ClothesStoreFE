@@ -1,4 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+/* Trong file styles.css hoặc file global tương tự */
+
+html {
+    /* Giữ lại thanh cuộn ở đây, nhưng dùng 'auto' sẽ tốt hơn. */
+    /* 'auto' chỉ hiện thanh cuộn khi nội dung thực sự dài hơn màn hình. */
+    overflow-y: auto;
+}
+
 body {
     margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    /* XÓA BỎ các thuộc tính overflow-y và height từ body */
+}
+
+/* Các đoạn mã @font-face của bạn giữ nguyên */
+@font-face {
+    font-family: 'Gilroy-Medium';
+    src: url('../public/assets/fonts/SVN-Gilroy\ Medium.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy-SemiBold';
+    src: url('../public/assets/fonts/SVN-Gilroy\ SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
 }

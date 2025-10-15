@@ -1,6 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { App } from './app/home/app';
+import { AppComponent } from './app/app.component'; // <-- THAY ĐỔI: Import AppComponent
 
-bootstrapApplication(App, appConfig)
+// Khởi động ứng dụng với AppComponent làm component gốc
+bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));

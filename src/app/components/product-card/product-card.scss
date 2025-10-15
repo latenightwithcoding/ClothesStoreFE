@@ -1,0 +1,107 @@
+$border-color: #e0e0e0;
+$background-color: #f7f7f7;
+$text-color: #333;
+$price-color: #555;
+$font-gilroy: 'Gilroy-Medium', sans-serif;
+$font-gilroy-semibold: 'Gilroy-SemiBold', sans-serif;
+
+.product-card {
+    text-align: center;
+
+    .product-link {
+        text-decoration: none;
+        color: $text-color;
+        display: block;
+    }
+
+    // --- Vùng chứa ảnh (phiên bản responsive có giới hạn) ---
+    .product-image-container {
+        position: relative;
+        background-color: $background-color;
+        cursor: pointer;
+
+        // THAY ĐỔI CHÍNH:
+        width: 100%; // 1. Cho phép nó co lại trên màn hình nhỏ
+        max-width: 341px; // 2. Đặt giới hạn tối đa, không bao giờ to hơn size này
+        aspect-ratio: 341 / 455; // 3. Luôn giữ đúng tỷ lệ
+
+        // Căn giữa container khi nó nhỏ hơn chiều rộng của cột
+        margin: 0 auto 1rem;
+
+        // Hiệu ứng hover vẫn giữ nguyên
+        &:hover {
+            .product-image {
+                opacity: 0;
+            }
+
+            .preview-image {
+                opacity: 1;
+            }
+        }
+    }
+
+    // --- Style chung cho cả hai ảnh (không đổi) ---
+    .product-image,
+    .preview-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .product-image {
+        opacity: 1; // Ảnh chính mặc định hiện
+    }
+
+    .preview-image {
+        opacity: 0; // Ảnh preview mặc định ẩn
+    }
+
+    .product-info {
+        opacity: 1;
+        visibility: visible;
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .product-price {
+            font-size: 0.9rem;
+            color: $price-color;
+            margin: 0;
+        }
+    }
+
+    .product-sizes {
+        // Nằm chồng lên product-info nhưng bị ẩn đi
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding-bottom: 0.5rem; // Căn chỉnh vị trí theo giá
+
+        opacity: 1;
+
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .size-option {
+        border: 1px solid $border-color;
+        background-color: white;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background-color: $text-color;
+            color: white;
+        }
+    }
+}

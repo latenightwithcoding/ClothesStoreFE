@@ -1,20 +1,52 @@
 $primary-color: #000000;
 $hover-color: white;
-$text-color: #afafaf;
+$text-color: #dddddd;
 
-nav {
-    background-color: transparent;
+.main-header {
+    /* Quan trọng: Giữ header ở trên cùng khi cuộn */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    /* Đảm bảo header luôn ở lớp trên cùng, cao hơn cả video và nội dung */
+    z-index: 100;
+}
+
+.header-container {
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-direction: row nowrap;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease; // Transition cho hiệu ứng mượt mà
 
-    // ✨ Đặt transition ở đây!
-    // Nó sẽ áp dụng cho cả lúc hover và lúc buông chuột ra.
-    transition: background-color 0.3s ease;
+    // ✅ SỬA LỖI Ở ĐÂY: Dùng '&' để kết hợp class
+    // Áp dụng style khi element có class .header-container VÀ .header-transparent
+    &.header-transparent {
+        background-color: transparent;
+    }
+
+    // Tương tự, áp dụng khi có class .header-container VÀ .header-solid
+    &.header-solid {
+        background-color: $primary-color;
+
+        nav {
+            .brand-icon {
+                color: $hover-color;
+            }
+        }
+    }
 
     &:hover {
+        // Khi hover, nền luôn là màu đen, bất kể trạng thái ban đầu
         background-color: $primary-color;
-        // Bỏ dòng transition ở đây
+
+        nav {
+            .brand-icon {
+                color: $hover-color;
+                transition: color 0.3s ease;
+            }
+        }
     }
 
     // Tương tự, nếu bạn có ::after, cũng cần đặt transition ở trạng thái gốc
@@ -27,32 +59,117 @@ nav {
         opacity: 1;
     }
 
-    // ... phần code còn lại của bạn giữ nguyên ...
-    img {
-        color: $primary-color;
-        height: 50px;
-        margin: 15px 15px;
+    .menu-icon {
+        color: $text-color;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        &:hover {
+            color: $hover-color;
+        }
     }
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
+    .user-menu {
+        display: flex;
+        align-items: first baseline;
+        justify-content: space-between;
+        flex-direction: row nowrap;
+        gap: 15px;
 
-        li {
-            display: inline-block;
+        .right-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid $text-color;
+            border-radius: 20%;
+            cursor: pointer;
+            padding: 5px;
 
-            a {
-                display: block;
-                padding: 10px;
+            .user-menu-icon {
                 color: $text-color;
-                text-decoration: none;
-                // Thêm transition cho màu chữ để mượt hơn
-                transition: color 0.3s ease;
+                width: 23px;
+                height: 23px;
+            }
 
-                &:hover {
+            &:hover {
+                border: 1px solid $hover-color;
+
+                .user-menu-icon {
                     color: $hover-color;
+                    transition: color 0.3s ease;
                 }
+            }
+        }
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        // ... phần code còn lại của bạn giữ nguyên ...
+        // img {
+        //     color: $primary-color;
+        //     height: 50px;
+        //     margin: 15px 15px;
+        // }
+
+        // .my_brand_name {
+        //     margin-top: 5px;
+        //     width: 120px;
+        //     height: inherit;
+        //     color: #ff5722;
+        // }
+
+        .brand-icon {
+            padding: 0 0 10px 0;
+            width: 180px;
+            height: auto;
+            color: $text-color; // hoặc bất kỳ màu nào
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: GilRoy-Medium, sans-serif;
+
+            li {
+                display: inline-block;
+
+                a {
+                    font-size: 14px;
+                    display: block;
+                    padding: 10px;
+                    color: $text-color;
+                    text-decoration: none;
+                    // Thêm transition cho màu chữ để mượt hơn
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        color: $hover-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .header-container {
+        align-items: center;
+
+        nav {
+            .nav-links {
+                display: none; // Ẩn menu khi màn hình
+            }
+        }
+
+        .user-menu {
+            .person-button {
+                display: none; // Ẩn nút user
             }
         }
     }

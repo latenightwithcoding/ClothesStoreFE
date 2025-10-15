@@ -1,17 +1,43 @@
 <header class="main-header">
-    <nav class="navbar">
-        <!-- <a class="navbar-brand" routerLink="/">{{ title }}</a> -->
-        <img src="assets/branding/brand-name.svg" alt="Logo" />
-        <ul class="nav-links">
-            <li>
-                <a routerLink="/home" routerLinkActive="active-link">Home</a>
-            </li>
-            <li>
-                <a routerLink="/github" routerLinkActive="active-link">GitHub Repos</a>
-            </li>
-            <li>
-                <a routerLink="/admin" routerLinkActive="active-link">Admin</a>
-            </li>
-        </ul>
-    </nav>
+    <app-scrolling-bar></app-scrolling-bar>
+    <div class="header-container" [ngClass]="{
+             'header-transparent': isTransparent, 
+             'header-solid': !isTransparent
+           }">
+        <div>
+            <mat-icon svgIcon="menu" class="menu-icon"></mat-icon>
+        </div>
+        <nav class="navbar">
+            <!-- <a class="navbar-brand" routerLink="/">{{ title }}</a> -->
+            <!-- <mat-icon svgIcon="my_brand_name" class="my_brand_name"></mat-icon> -->
+            <a routerLink="/" class="brand-name">
+                <mat-icon svgIcon="brand_name" class="brand-icon"></mat-icon>
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a routerLink="/shop" routerLinkActive="active-link">SHOP</a>
+                </li>
+                <li>
+                    <a routerLink="/about-us" routerLinkActive="active-link">ABOUT US</a>
+                </li>
+                <li>
+                    <a routerLink="/collection" routerLinkActive="active-link">COLLECTION</a>
+                </li>
+                <li>
+                    <a routerLink="/contact" routerLinkActive="active-link">CONTACT</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <div class="person-button right-button">
+                <ng-icon name="tdesignUser1Filled" class="user-menu-icon" />
+                <!-- <mat-icon svgIcon="person" class="person-icon"></mat-icon> -->
+            </div>
+
+            <div class="cart-button right-button">
+                <ng-icon name="tdesignCartFilled" class="user-menu-icon" />
+                <!-- <mat-icon svgIcon="person" class="person-icon"></mat-icon> -->
+            </div>
+        </div>
+    </div>
 </header>

@@ -1,0 +1,19 @@
+<div class="product-card">
+    <a [routerLink]="['/product', product.slug]" class="product-link">
+        <div class="product-image-container">
+            <img [src]="product.mainImage" [alt]="product.name" class="product-image" />
+            <img [src]="product.previewImage" [alt]="product.name + ' preview'" class="preview-image" />
+        </div>
+
+        <div class="product-sizes">
+            <span *ngFor="let size of product.sizes" class="size-option">
+                {{ size }}
+            </span>
+        </div>
+
+        <div class="product-info">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <p class="product-price">{{ product.price | currency:'VND':'symbol':'1.0-0' }}</p>
+        </div>
+    </a>
+</div>

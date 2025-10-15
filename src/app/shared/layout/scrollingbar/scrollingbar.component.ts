@@ -9,5 +9,4 @@ import { NgxMarqueeModule } from 'ngx-marquee';
     styleUrls: ['./scrollingbar.component.scss']
 })
 export class ScrollingBarComponent {
-
 }
