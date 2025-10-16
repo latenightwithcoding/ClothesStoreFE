@@ -34,6 +34,7 @@
     "@ng-icons/heroicons": "^32.1.0",
     "@ng-icons/tdesign-icons": "^32.1.0",
     "rxjs": "~7.8.0",
+    "swiper": "^12.0.2",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

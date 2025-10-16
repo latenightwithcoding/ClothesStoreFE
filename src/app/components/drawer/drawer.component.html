@@ -1,0 +1,22 @@
+<!-- Lớp phủ nền -->
+<div class="drawer-overlay" [class.is-open]="isOpen" (click)="close()"></div>
+
+<!-- Nội dung Drawer -->
+<aside [ngClass]="getDrawerClasses()">
+    <!-- Header -->
+    <header class="drawer-header" *ngIf="header || closable">
+        <h2 class="drawer-header__title" *ngIf="header">{{ header }}</h2>
+
+        <button *ngIf="closable" (click)="close()" class="drawer-header__close-btn" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon-close" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </header>
+
+    <!-- Nội dung chính -->
+    <main class="drawer-content">
+        <ng-content></ng-content>
+    </main>
+</aside>

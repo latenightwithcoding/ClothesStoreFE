@@ -1,0 +1,197 @@
+:host {
+    --drawer-background: #ffffff;
+    --drawer-text-color: #1f2937;
+    --drawer-border-color: #e5e7eb;
+    --drawer-overlay-color: rgba(0, 0, 0, 0.6);
+    --drawer-transition-duration: 300ms;
+    --drawer-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    .dark & {
+        --drawer-background: #1f2937;
+        --drawer-text-color: #f9fafb;
+        --drawer-border-color: #4b5563;
+    }
+}
+
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--drawer-overlay-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--drawer-transition-duration) ease-in-out;
+    z-index: 40;
+
+    &.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.drawer-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--drawer-background);
+    color: var(--drawer-text-color);
+    box-shadow: var(--drawer-shadow);
+    transition: transform var(--drawer-transition-duration) ease-in-out,
+        opacity var(--drawer-transition-duration) ease-in-out;
+    z-index: 50;
+
+    /* --- Positions --- */
+    &.position-left {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+    }
+
+    &.position-right {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    &.position-top {
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(-100%);
+    }
+
+    &.position-bottom {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(100%);
+    }
+
+    &.position-full {
+        inset: 0;
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    /* --- Sizes (Horizontal) --- */
+    &.position-left,
+    &.position-right {
+        &.size-sm {
+            width: 320px;
+        }
+
+        &.size-m {
+            width: 384px;
+        }
+
+        &.size-lg {
+            width: 512px;
+        }
+
+        &.size-xl {
+            width: 768px;
+        }
+    }
+
+    /* --- Sizes (Vertical) --- */
+    &.position-top,
+    &.position-bottom {
+        &.size-sm {
+            height: 256px;
+        }
+
+        &.size-m {
+            height: 320px;
+        }
+
+        &.size-lg {
+            height: 384px;
+        }
+
+        &.size-xl {
+            height: 512px;
+        }
+    }
+
+    &.position-full {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* --- Khi mở --- */
+    &.is-open.position-left {
+        transform: translateX(0);
+    }
+
+    &.is-open.position-right {
+        transform: translateX(0);
+    }
+
+    &.is-open.position-top {
+        transform: translateY(0);
+    }
+
+    &.is-open.position-bottom {
+        transform: translateY(0);
+    }
+
+    &.is-open.position-full {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--drawer-border-color);
+
+    &__title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    &__close-btn {
+        padding: 0.25rem;
+        border-radius: 50%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #6b7280;
+        margin-left: auto; // ✅ thêm dòng này để nút tự đẩy sang phải
+
+        &:hover {
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .icon-close {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+    // ✅ Nếu không có tiêu đề, vẫn giữ nút ở bên phải
+    &:has(> .drawer-header__close-btn):not(:has(> .drawer-header__title)) {
+        justify-content: flex-end;
+    }
+}
+
+.drawer-content {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+
+    // 768px là breakpoint phổ biến cho máy tính bảng dạng dọc
+    .drawer-container {
+        max-width: 100vw;
+    }
+}

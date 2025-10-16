@@ -4,7 +4,8 @@
 
 // Biến màu để dễ quản lý
 $border-color: #e0e0e0;
-$background-color: #f7f7f7;
+$background-color: #ffffff;
+$product-background-color: #f7f7f7;
 $text-color: #333;
 $price-color: #555;
 $font-gilroy: 'Gilroy-Medium', sans-serif;
@@ -91,6 +92,7 @@ $font-gilroy-semibold: 'Gilroy-SemiBold', sans-serif;
 
 .featured-product-container {
     padding: 6rem 14rem 2rem 14rem; // Tăng khoảng đệm để section không bị dính
+    background-color: $background-color;
 }
 
 .featured-product-grid {
@@ -111,7 +113,7 @@ $font-gilroy-semibold: 'Gilroy-SemiBold', sans-serif;
     // --- Vùng chứa ảnh (phiên bản responsive có giới hạn) ---
     .product-image-container {
         position: relative;
-        background-color: $background-color;
+        background-color: $product-background-color;
         cursor: pointer;
 
         // THAY ĐỔI CHÍNH:
@@ -207,6 +209,7 @@ $font-gilroy-semibold: 'Gilroy-SemiBold', sans-serif;
 .shop-by-collection {
     padding: 0 0 4rem 0;
     overflow: hidden;
+    background-color: $background-color;
 
     .section-title {
         text-align: center;

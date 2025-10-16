@@ -1,0 +1,27 @@
+<div class="menu-item" [class.has-submenu]="subItems.length" [class.open]="isOpen && subItems.length">
+
+    <a *ngIf="link" [routerLink]="link" (click)="toggleAccordion($event)" class="menu-title">
+        <span>{{ title }}</span>
+        <svg *ngIf="subItems.length" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" [class.rotate]="isOpen">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </a>
+
+    <span *ngIf="!link" (click)="toggleAccordion($event)" class="menu-title no-link">
+        <span>{{ title }}</span>
+        <svg *ngIf="subItems.length" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" [class.rotate]="isOpen">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </span>
+
+    <div class="submenu-wrapper" [class.open]="isOpen && subItems.length">
+        <ul class="submenu">
+            <li *ngFor="let item of subItems">
+                <a *ngIf="item.link; else noLink" [routerLink]="item.link">{{ item.label }}</a>
+                <ng-template #noLink>{{ item.label }}</ng-template>
+            </li>
+        </ul>
+    </div>
+</div>

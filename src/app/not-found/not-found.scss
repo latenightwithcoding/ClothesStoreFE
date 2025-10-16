@@ -1,0 +1,54 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    /* hơi to hơn khung nhìn để dịch chuyển mà không lộ mép */
+    height: 110vh;
+    object-fit: cover;
+    transition: transform 0.1s ease-out;
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+button {
+    font-size: 20px;
+    padding: 12px 24px;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    color: #000;
+    transition: all 0.3s ease; // mượt hơn
+
+    &:hover {
+        background-color: #f3f4f6;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); // ánh sáng trắng nhẹ
+        transform: scale(1.05); // hơi phóng to khi hover
+    }
+
+    &:active {
+        transform: scale(0.98); // ấn xuống cảm giác thật
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+}

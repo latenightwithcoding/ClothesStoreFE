@@ -4,7 +4,7 @@
              'header-transparent': isTransparent, 
              'header-solid': !isTransparent
            }">
-        <div>
+        <div (click)="isDrawerOpen = true">
             <mat-icon svgIcon="menu" class="menu-icon"></mat-icon>
         </div>
         <nav class="navbar">
@@ -40,4 +40,20 @@
             </div>
         </div>
     </div>
+    <!-- Drawer Instance -->
+    <!-- Drawer Instance -->
+    <app-drawer [(isOpen)]="isDrawerOpen" position="left" size="m">
+        <nav>
+            <app-menu-item-accordion title="SHOP" link="/shop"></app-menu-item-accordion>
+
+            <app-menu-item-accordion title="ABOUT US" link="/about-us"></app-menu-item-accordion>
+
+            <app-menu-item-accordion title="COLLECTION" [subItems]="[
+              { label: 'Daily', link: '/collection/daily' },
+              { label: 'Training', link: '/collection/training' }
+            ]" [drawerOpen]="isDrawerOpen"></app-menu-item-accordion>
+
+            <app-menu-item-accordion title="CONTACT" link="/contact"></app-menu-item-accordion>
+        </nav>
+    </app-drawer>
 </header>
