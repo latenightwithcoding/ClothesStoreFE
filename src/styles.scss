@@ -1,4 +1,27 @@
 /* Trong file styles.css hoặc file global tương tự */
+/* Toàn bộ thanh cuộn */
+::-webkit-scrollbar {
+    width: 8px;
+    /* chiều rộng thanh cuộn dọc */
+    height: 8px;
+    /* chiều cao thanh cuộn ngang */
+}
+
+/* Phần rãnh nền */
+::-webkit-scrollbar-track {
+    background: #272727;
+}
+
+/* Phần thanh trượt */
+::-webkit-scrollbar-thumb {
+    background: #868686;
+    border-radius: 10px;
+}
+
+/* Khi hover vào thanh trượt */
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
 
 html {
     /* Giữ lại thanh cuộn ở đây, nhưng dùng 'auto' sẽ tốt hơn. */

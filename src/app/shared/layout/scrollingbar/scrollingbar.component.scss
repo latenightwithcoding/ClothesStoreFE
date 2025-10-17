@@ -12,7 +12,7 @@
     gap: 3rem;
     flex-shrink: 0;
     width: max-content;
-    animation: scroll-left 2.5s linear infinite;
+    animation: scroll-left 4s linear infinite;
 }
 
 // /* Hover: tạm dừng */
@@ -40,11 +40,11 @@
 /* Cuộn vô tận */
 @keyframes scroll-left {
     0% {
-        transform: translateX(-1.5%);
+        transform: translateX(0.4%);
     }
 
     100% {
-        transform: translateX(-10%); // ✅ fix lỗi bị trống
+        transform: translateX(-8%); // ✅ fix lỗi bị trống
     }
 }
 

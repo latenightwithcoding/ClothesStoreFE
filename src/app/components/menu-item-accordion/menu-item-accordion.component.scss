@@ -20,16 +20,18 @@
             height: 1.25rem;
             color: #6b7280;
             transition: transform 0.3s ease;
+            transform: rotate(180deg);
         }
 
         svg.rotate {
-            transform: rotate(180deg);
+            transform: rotate(0deg);
         }
     }
 
     /* Khi mở submenu, đổi màu nền menu-title */
     &.open>.menu-title {
         background-color: #f3f4f6;
+        border-radius: 0.5rem 0.5rem 0 0;
     }
 
     /* Submenu có hiệu ứng slide mở tự nhiên */
@@ -51,6 +53,7 @@
 
     .submenu {
         padding-left: 1.5rem;
+        padding-bottom: 0.5rem;
         list-style: none;
         margin: 0;
         font-family: "Gilroy-SemiBold", sans-serif;
