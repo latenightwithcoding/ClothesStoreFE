@@ -23,32 +23,33 @@ canvas {
     transition: transform 0.1s ease-out;
 }
 
-.navigation {
+.navigation-button {
+    /* Reset lại giao diện mặc định của thẻ a */
+    text-decoration: none;
+    color: black;
+
+    /* Tạo kiểu giống button */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    padding: 10px 25px;
+    /* Tăng padding ngang một chút cho đẹp hơn */
+
+    /* Đây là thay đổi chính để tạo hình viên thuốc */
+    border-radius: 999px;
+    border: none;
+    /* Bỏ đường viền mặc định */
+
+    background-color: #f0f0f0;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    /* Đảm bảo chữ không bị xuống dòng */
 }
 
-button {
-    font-size: 20px;
-    padding: 12px 24px;
-    border-radius: 100px;
-    cursor: pointer;
-    background-color: #fff;
-    border: none;
-    color: #000;
-    transition: all 0.3s ease; // mượt hơn
-
-    &:hover {
-        background-color: #f3f4f6;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); // ánh sáng trắng nhẹ
-        transform: scale(1.05); // hơi phóng to khi hover
-    }
-
-    &:active {
-        transform: scale(0.98); // ấn xuống cảm giác thật
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-    }
+/* Thêm hiệu ứng khi hover */
+.navigation-button:hover {
+    background-color: #e0e0e0;
 }
