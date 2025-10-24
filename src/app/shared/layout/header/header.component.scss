@@ -3,34 +3,108 @@ $hover-color: white;
 $text-color: #dddddd;
 
 .main-header {
-    /* Quan trọng: Giữ header ở trên cùng khi cuộn */
+    /* Quan trọng: Chỉ còn là 'absolute' để đè lên banner */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-
-    /* Đảm bảo header luôn ở lớp trên cùng, cao hơn cả video và nội dung */
     z-index: 100;
+    // Xóa transition ở đây
+
+    /* ✅ XÓA BỎ HOÀN TOÀN KHỐI &.is-sticky KHỎI .main-header */
+    /*
+    &.is-sticky {
+        position: fixed;
+        animation: slideDown 0.4s ease-out;
+    }
+    */
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleBrandName {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.8);
+    }
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row nowrap;
     padding: 10px 20px;
-    transition: background-color 0.3s ease; // Transition cho hiệu ứng mượt mà
+    transition: background-color 0.3s ease;
+    align-items: center; // Căn giữa các item theo chiều dọc
 
-    // ✅ SỬA LỖI Ở ĐÂY: Dùng '&' để kết hợp class
-    // Áp dụng style khi element có class .header-container VÀ .header-transparent
+    // ✅ THÊM DÒNG NÀY ĐỂ SỬA LỖI
+    box-sizing: border-box;
+
+    // ===================================
+    // LOGIC LAYOUT MỚI
+    // ===================================
+
+    // 1. Layout khi ở TOP
+    &.layout-top {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    // 2. Layout khi STICKY (logo ở giữa)
+    &.layout-sticky {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        animation: slideDown 0.7s ease forwards;
+
+        .header-left {
+            grid-column: 1;
+            justify-self: start;
+        }
+
+        .header-center {
+            grid-column: 2;
+            justify-self: center;
+            margin-left: 0;
+            flex-direction: row;
+
+            .brand-icon {
+                padding: 0;
+                transform: scale(1.1);
+            }
+        }
+
+        .header-right {
+            grid-column: 3;
+            justify-self: end;
+        }
+    }
+
+    // ===================================
+    // LOGIC MÀU NỀN (Phần này đã đúng)
+    // ===================================
+
     &.header-transparent {
         background-color: transparent;
     }
 
-    // Tương tự, áp dụng khi có class .header-container VÀ .header-solid
     &.header-solid {
         background-color: $primary-color;
 
-        nav {
+        .header-center {
             .brand-icon {
                 color: $hover-color;
             }
@@ -38,10 +112,9 @@ $text-color: #dddddd;
     }
 
     &:hover {
-        // Khi hover, nền luôn là màu đen, bất kể trạng thái ban đầu
         background-color: $primary-color;
 
-        nav {
+        .header-center {
             .brand-icon {
                 color: $hover-color;
                 transition: color 0.3s ease;
@@ -49,28 +122,36 @@ $text-color: #dddddd;
         }
     }
 
-    // Tương tự, nếu bạn có ::after, cũng cần đặt transition ở trạng thái gốc
+    // (Các style ::after không đổi)
     &::after {
-        opacity: 0; // Trạng thái ban đầu
-        transition: opacity 0.3s ease; // Transition cho trạng thái gốc
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     &:hover::after {
         opacity: 1;
     }
 
-    .menu-icon {
-        color: $text-color;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
+    // ===================================
+    // CÁC KHỐI CON (Phần này đã đúng)
+    // ===================================
 
-        &:hover {
-            color: $hover-color;
+    // KHỐI 1: BÊN TRÁI
+    .header-left {
+        .menu-icon {
+            color: $text-color;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+
+            &:hover {
+                color: $hover-color;
+            }
         }
     }
 
-    .user-menu {
+    // KHỐI 3: BÊN PHẢI
+    .header-right.user-menu {
         display: flex;
         align-items: first baseline;
         justify-content: space-between;
@@ -104,34 +185,23 @@ $text-color: #dddddd;
         }
     }
 
-    nav {
+    // KHỐI 2: Ở GIỮA
+    .header-center {
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-left: 4rem;
-        // ... phần code còn lại của bạn giữ nguyên ...
-        // img {
-        //     color: $primary-color;
-        //     height: 50px;
-        //     margin: 15px 15px;
-        // }
-
-        // .my_brand_name {
-        //     margin-top: 5px;
-        //     width: 120px;
-        //     height: inherit;
-        //     color: #ff5722;
-        // }
+        margin-left: 4rem; // Giữ lại margin này cho layout-top
 
         .brand-icon {
             padding: 0 0 10px 0;
             width: 180px;
             height: auto;
-            color: $text-color; // hoặc bất kỳ màu nào
-            transition: color 0.3s ease;
+            color: $text-color;
+            transition: color 0.3s ease, transform 0.3s ease-out;
+            transform: scale(1);
         }
 
-        ul {
+        ul.nav-links {
             margin: 0;
             padding: 0;
             list-style: none;
@@ -146,7 +216,6 @@ $text-color: #dddddd;
                     padding: 10px;
                     color: $text-color;
                     text-decoration: none;
-                    // Thêm transition cho màu chữ để mượt hơn
                     transition: color 0.3s ease;
 
                     &:hover {
@@ -158,21 +227,51 @@ $text-color: #dddddd;
     }
 }
 
+// ===================================
+// MEDIA QUERY (Phần này đã đúng)
+// ===================================
 @media (max-width: 768px) {
     .header-container {
         align-items: center;
 
-        nav {
-            margin-left: 0;
+        // Trên mobile, luôn dùng layout 3-cột (sticky)
+        &.layout-top {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
 
-            .nav-links {
-                display: none; // Ẩn menu khi màn hình
+            .header-left {
+                grid-column: 1;
+                justify-self: start;
+            }
+
+            .header-center {
+                grid-column: 2;
+                justify-self: center;
+                margin-left: 0;
+                flex-direction: row;
+
+                .brand-icon {
+                    padding: 0;
+                }
+            }
+
+            .header-right {
+                grid-column: 3;
+                justify-self: end;
             }
         }
 
-        .user-menu {
+        .header-center {
+            margin-left: 0;
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .header-right.user-menu {
             .person-button {
-                display: none; // Ẩn nút user
+                display: none;
             }
         }
     }

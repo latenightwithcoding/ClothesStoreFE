@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ScrollingBarComponent } from '../scrollingbar/scrollingbar.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tdesignUser1Filled, tdesignCartFilled } from '@ng-icons/tdesign-icons';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { DrawerComponent } from '../../../components/drawer/drawer.component';
 import { MenuItemAccordionComponent } from '../../../components/menu-item-accordion/menu-item-accordion.component';
 
@@ -15,6 +15,7 @@ import { MenuItemAccordionComponent } from '../../../components/menu-item-accord
     selector: 'app-header',
     standalone: true,
     imports: [
+        CommonModule,
         RouterLink,
         RouterLinkActive,
         MatIconModule,
@@ -31,6 +32,7 @@ import { MenuItemAccordionComponent } from '../../../components/menu-item-accord
 export class HeaderComponent implements OnInit, OnDestroy {
     title = 'Shop';
     @Input() isTransparent: boolean = true;
+    public isSticky: boolean = false;
 
     private routerSub?: Subscription;
 
@@ -60,6 +62,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.routerSub?.unsubscribe();
+    }
+
+    @HostListener('window:scroll', [])
+    onWindowScroll(): void {
+        const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+        // Khi cuộn qua 10px, isSticky = true
+        // this.isSticky = scrollOffset > 100;
+        if (scrollOffset > 100) {
+            this.isSticky = true;
+        } else if (scrollOffset < 10) {
+            this.isSticky = false;
+        }
     }
 
     openDrawer(position: 'left' | 'right' | 'top' | 'bottom' | 'full', size: 'sm' | 'm' | 'lg' | 'xl') {

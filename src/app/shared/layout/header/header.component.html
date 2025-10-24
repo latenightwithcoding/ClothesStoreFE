@@ -1,19 +1,24 @@
 <header class="main-header">
-    <app-scrolling-bar></app-scrolling-bar>
+    <app-scrolling-bar *ngIf="!isSticky"></app-scrolling-bar>
+
     <div class="header-container" [ngClass]="{
-             'header-transparent': isTransparent, 
-             'header-solid': !isTransparent
-           }">
-        <div (click)="isDrawerOpen = true">
+                'layout-top': !isSticky,
+                'layout-sticky': isSticky,
+                
+                'header-transparent': isTransparent && !isSticky,
+                'header-solid': !isTransparent || isSticky
+             }">
+
+        <div class="header-left" (click)="isDrawerOpen = true">
             <mat-icon svgIcon="menu" class="menu-icon"></mat-icon>
         </div>
-        <nav class="navbar">
-            <!-- <a class="navbar-brand" routerLink="/">{{ title }}</a> -->
-            <!-- <mat-icon svgIcon="my_brand_name" class="my_brand_name"></mat-icon> -->
+
+        <div class="header-center">
             <a routerLink="/" class="brand-name">
                 <mat-icon svgIcon="brand_name" class="brand-icon"></mat-icon>
             </a>
-            <ul class="nav-links">
+
+            <ul *ngIf="!isSticky" class="nav-links">
                 <li>
                     <a routerLink="/shop" routerLinkActive="active-link">SHOP</a>
                 </li>
@@ -27,16 +32,14 @@
                     <a routerLink="/contact" routerLinkActive="active-link">CONTACT</a>
                 </li>
             </ul>
-        </nav>
-        <div class="user-menu">
+        </div>
+
+        <div class="header-right user-menu">
             <div class="person-button right-button">
                 <ng-icon name="tdesignUser1Filled" class="user-menu-icon" />
-                <!-- <mat-icon svgIcon="person" class="person-icon"></mat-icon> -->
             </div>
-
             <div class="cart-button right-button">
                 <ng-icon name="tdesignCartFilled" class="user-menu-icon" />
-                <!-- <mat-icon svgIcon="person" class="person-icon"></mat-icon> -->
             </div>
         </div>
     </div>
