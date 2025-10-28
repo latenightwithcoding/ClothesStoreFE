@@ -1,0 +1,19 @@
+<div style="min-height: 100vh; padding: 2rem; margin-top: 10rem;">
+    <!-- 
+      Sử dụng [(ngModel)] để binding 2 chiều (two-way binding)
+      thay vì [data] (one-way binding).
+    -->
+    <ckeditor [editor]="Editor" [config]="config" [(ngModel)]="editorData"></ckeditor>
+
+    <!-- Thêm nút Submit -->
+    <button (click)="onSubmit()" class="submit-button">Submit</button>
+
+    <!-- Khu vực hiển thị HTML đã submit -->
+    <div *ngIf="submittedHtml" class="submitted-content-wrapper">
+        <h3>Kết quả HTML (HTML Output):</h3>
+        <pre class="submitted-content-raw">{{ submittedHtml }}</pre>
+
+        <h3 style="margin-top: 2rem;">Bản xem trước (Preview):</h3>
+        <div class="submitted-content-preview" [innerHTML]="submittedHtml"></div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+@import 'ckeditor5/ckeditor5.css';
+@import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
+
+/* Thêm style cho nút Submit và khu vực hiển thị */
+
+.submit-button {
+    display: inline-block;
+    margin: 1.5rem 0;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    /* Màu xanh dương */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #0056b3;
+        /* Màu xanh đậm hơn */
+    }
+}
+
+.submitted-content-wrapper {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+
+    h3 {
+        margin-top: 0;
+        font-family: sans-serif;
+        color: #333;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+
+    /* Kiểu cho code HTML thô */
+    .submitted-content-raw {
+        background-color: #272822;
+        /* Màu nền tối */
+        color: #f8f8f2;
+        /* Màu chữ sáng */
+        padding: 1rem;
+        border-radius: 8px;
+        white-space: pre-wrap;
+        /* Tự động xuống hàng */
+        word-wrap: break-word;
+        /* Ngắt từ nếu quá dài */
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.9rem;
+    }
+
+    /* Kiểu cho bản xem trước */
+    .submitted-content-preview {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        background-color: #ffffff;
+        min-height: 100px;
+
+        /* ---- BẮT ĐẦU CẬP NHẬT CSS ---- */
+
+        /* Sử dụng ::ng-deep để "xuyên thủng" đóng gói (encapsulation) của Angular.
+      Điều này là BẮT BUỘC vì nội dung HTML được chèn động 
+      thông qua [innerHTML] và không có các thuộc tính _ngcontent-*.
+    */
+        ::ng-deep {
+
+            /* Xử lý các thẻ <figure> do CKEditor tạo ra */
+            figure {
+                margin: 1em 0; // Thêm khoảng cách mặc định
+
+                &.image {
+                    // Dành riêng cho thẻ figure.image
+                    display: block; // Giúp căn giữa hoạt động
+                }
+
+                // Xử lý ảnh "inline" (căn giữa)
+                &.image-style-inline {
+                    max-width: 100%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                // Xử lý ảnh "wrapText" (class: image-style-side)
+                &.image-style-side {
+                    float: left; // Cho ảnh float sang trái
+                    margin-right: 1.5em; // Thêm khoảng cách với chữ
+                    /* ĐÃ XÓA max-width: 50%; để tôn trọng width do người dùng resize */
+                }
+
+                // Xử lý ảnh "breakText" (căn phải)
+                &.image-style-break-text {
+                    float: right; // Cho ảnh float sang phải
+                    margin-left: 1.5em; // Thêm khoảng cách với chữ
+                    /* ĐÃ XÓA max-width: 50%; để tôn trọng width do người dùng resize */
+                }
+
+                // Xóa float để các phần tử sau không bị ảnh hưởng
+                &::after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+            }
+
+            /* Đảm bảo các ảnh BÊN TRONG figure (hoặc img đứng riêng) 
+        không bao giờ vượt quá 100% chiều rộng của container 
+      */
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block; // Xóa khoảng trắng thừa bên dưới ảnh
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td,
+            th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+        }
+
+        /* ---- KẾT THÚC CẬP NHẬT CSS ---- */
+    }
+}
